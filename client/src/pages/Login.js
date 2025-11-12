@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Users, Shield, Zap } from 'lucide-react';
 
+const Login = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ import { useAuth } from '../context/AuthContext';
     window.location.href = 'http://localhost:5001/api/auth/google';
   };
 
-const styles = {
+  const styles = {
     container: {
       display: 'flex',
       flexDirection: 'column',
@@ -31,6 +33,7 @@ const styles = {
       alignItems: 'center',
       gap: '10px',
       margin: '10px 0',
+      color: 'white'
     },
     googleButton: {
       display: 'flex',
@@ -40,20 +43,25 @@ const styles = {
       marginTop: '20px',
       backgroundColor: 'white',
       color: '#757575',
-       border: '1px solid #e0e0e0',
+      border: '1px solid #e0e0e0',
       borderRadius: '4px',
       fontSize: '16px',
       fontWeight: '500',
       cursor: 'pointer',
       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
       transition: 'all 0.3s ease',
-    },
+      '&:hover': {
+        backgroundColor: '#f8fafc',
+        borderColor: '#cbd5e1',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+      }
+    }
   };
 
   return (
     <div style={styles.container}>
-      <h1>Welcome to Sahyog</h1>
-      <p>Login to continue to your account</p>
+      <h1 style={{ color: 'white' }}>Welcome to Sahyog</h1>
+      <p style={{ color: 'white' }}>Login to continue to your account</p>
       
       <div style={{ margin: '20px 0' }}>
         <div style={styles.feature}>
@@ -84,5 +92,3 @@ const styles = {
 };
 
 export default Login;
-
-
