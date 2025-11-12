@@ -14,16 +14,17 @@ import { useAuth } from '../context/AuthContext';
   const handleGoogleLogin = () => {
     window.location.href = 'http://localhost:5001/api/auth/google';
   };
+
 const styles = {
     container: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      minHeight: '100vh',
+      minHeight: 'calc(100vh - 80px)',
       padding: '20px',
       textAlign: 'center',
-      background: '#f8fafc',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     },
     feature: {
       display: 'flex',
@@ -85,79 +86,3 @@ const styles = {
 export default Login;
 
 
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 80px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    padding: '2rem'
-  },
-  loginBox: {
-    backgroundColor: 'white',
-    borderRadius: '1rem',
-    padding: '3rem',
-    maxWidth: '480px',
-    width: '100%',
-    boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)'
-  },
-  header: {
-    textAlign: 'center',
-    marginBottom: '2rem'
-  },
-  title: {
-    fontSize: '2rem',
-    fontWeight: 700,
-    color: '#1e293b',
-    marginBottom: '0.5rem'
-  },
-  subtitle: {
-    color: '#64748b',
-    fontSize: '1rem'
-  },
-  features: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-    marginBottom: '2rem',
-    padding: '1.5rem',
-    backgroundColor: '#f8fafc',
-    borderRadius: '0.75rem'
-  },
-  feature: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.75rem',
-    color: '#475569',
-    fontSize: '0.875rem',
-    fontWeight: 500
-  },
-  googleButton: {
-    width: '100%',
-    padding: '0.875rem 1.5rem',
-    backgroundColor: 'white',
-    border: '2px solid #e2e8f0',
-    borderRadius: '0.5rem',
-    fontSize: '1rem',
-    fontWeight: 600,
-    color: '#1e293b',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'all 0.2s',
-    boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)'
-  },
-  terms: {
-    marginTop: '1.5rem',
-    textAlign: 'center',
-    fontSize: '0.75rem',
-    color: '#94a3b8',
-    lineHeight: 1.5
-  }
-};
-
-
-
-export default Login;
