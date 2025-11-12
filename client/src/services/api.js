@@ -28,5 +28,18 @@ export const skillAPI = {
   delete: (id) => api.delete(`/api/skills/${id}`),
 };
 
+// Request APIs
+export const requestAPI = {
+  create: (data) => api.post('/api/requests', data),
+  getAll: (params) => api.get('/api/requests', { params }),
+  getById: (id) => api.get(`/api/requests/${id}`),
+  getMyRequests: () => api.get('/api/requests/user/my-requests'),
+  update: (id, data) => api.put(`/api/requests/${id}`, data),
+  respond: (id, message) => api.post(`/api/requests/${id}/respond`, { message }),
+  acceptResponder: (id, responderId) => api.post(`/api/requests/${id}/accept/${responderId}`),
+  rate: (id, score, feedback) => api.post(`/api/requests/${id}/rate`, { score, feedback }),
+  delete: (id) => api.delete(`/api/requests/${id}`),
+};
+
 // Export the instance (optional, if needed elsewhere)
 export { api };
