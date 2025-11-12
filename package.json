@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server/index.js",
     "client": "cd client && npm start",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm install",
     "install-all": "npm install && cd client && npm install"
   },
   "keywords": ["community", "skill-sharing", "peer-support"],
