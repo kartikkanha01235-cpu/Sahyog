@@ -19,36 +19,37 @@ const Skills = () => {
     fetchSkills();
   }, [fetchSkills]);
 
-  const fetchCategories = async () => {
-    try {
-      const response = await skillAPI.getCategories();
-      if (response.data.success) {
-        setCategories(response.data.categories);
-      }
-    } catch (err) {
-      console.error('Error fetching categories:', err);
-    }
-  };
+  const fetchCategories = useCallback(async () => {
+  try {
+    const response = await skillAPI.getCategories();
+    setCategories(response.data);
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+}, []);
 
-  const fetchSkills = async () => {
+// Update the dependency array in the main useEffect
+useEffect(() => {
+  fetchCategories();
+  fetchSkills();
+}, [fetchCategories, fetchSkills]);
+
+  const fetchSkills = useCallback(async () => {
     try {
       setLoading(true);
-      const params = {};
-      if (filters.query) params.query = filters.query;
-      if (filters.category) params.category = filters.category;
-      if (filters.location) params.location = filters.location;
-      if (filters.minRating) params.minRating = filters.minRating;
-
-      const response = await skillAPI.search(params);
-      if (response.data.success) {
-        setSkills(response.data.skills);
-      }
-    } catch (err) {
-      console.error('Error fetching skills:', err);
+      const response = await skillAPI.search(filters);
+      setSkills(response.data);
+    } catch (error) {
+      console.error('Error fetching skills:', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]); // Add dependencies here
+
+  useEffect(() => {
+    fetchCategories();
+    fetchSkills();
+  }, [fetchSkills, fetchCategories]); // Add fetchCategories to the dependency array
 
   const handleFilterChange = (e) => {
     setFilters({
