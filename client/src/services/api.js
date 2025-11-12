@@ -1,40 +1,32 @@
+
 import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
+// Create one configured Axios instance
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  withCredentials: true,
+  headers: { 'Content-Type': 'application/json' },
+});
+
 // User APIs
 export const userAPI = {
-  getProfile: (id) => axios.get(`${API_BASE_URL}/api/users/profile/${id}`),
-  updateProfile: (data) => axios.put(`${API_BASE_URL}/api/users/profile`, data),
-  searchUsers: (params) => axios.get(`${API_BASE_URL}/api/users/search`, { params }),
-  getStats: (id) => axios.get(`${API_BASE_URL}/api/users/stats/${id}`)
+  getProfile: (id) => api.get(`/api/users/profile/${id}`),
+  updateProfile: (data) => api.put('/api/users/profile', data),
+  searchUsers: (params) => api.get('/api/users/search', { params }),
+  getStats: (id) => api.get(`/api/users/stats/${id}`),
 };
 
 // Skill APIs
 export const skillAPI = {
-  getCategories: () => axios.get(`${API_BASE_URL}/api/skills/categories`),
-  create: (data) => axios.post(`${API_BASE_URL}/api/skills`, data),
-  getByUser: (userId) => axios.get(`${API_BASE_URL}/api/skills/user/${userId}`),
-  search: (params) => axios.get(`${API_BASE_URL}/api/skills/search`, { params }),
-  update: (id, data) => axios.put(`${API_BASE_URL}/api/skills/${id}`, data),
-  delete: (id) => axios.delete(`${API_BASE_URL}/api/skills/${id}`)
+  getCategories: () => api.get('/api/skills/categories'),
+  create: (data) => api.post('/api/skills', data),
+  getByUser: (userId) => api.get(`/api/skills/user/${userId}`),
+  search: (params) => api.get('/api/skills/search', { params }),
+  update: (id, data) => api.put(`/api/skills/${id}`, data),
+  delete: (id) => api.delete(`/api/skills/${id}`),
 };
 
-// Help Request APIs
-export const requestAPI = {
-  create: (data) => axios.post(`${API_BASE_URL}/api/requests`, data),
-  getAll: (params) => axios.get(`${API_BASE_URL}/api/requests`, { params }),
-  getById: (id) => axios.get(`${API_BASE_URL}/api/requests/${id}`),
-  getMyRequests: () => axios.get(`${API_BASE_URL}/api/requests/user/my-requests`),
-  update: (id, data) => axios.put(`${API_BASE_URL}/api/requests/${id}`, data),
-  respond: (id, message) => axios.post(`${API_BASE_URL}/api/requests/${id}/respond`, { message }),
-  acceptResponder: (id, responderId) => axios.post(`${API_BASE_URL}/api/requests/${id}/accept/${responderId}`),
-  rate: (id, score, feedback) => axios.post(`${API_BASE_URL}/api/requests/${id}/rate`, { score, feedback }),
-  delete: (id) => axios.delete(`${API_BASE_URL}/api/requests/${id}`)
-};
-
-export default {
-  userAPI,
-  skillAPI,
-  requestAPI
-};
+// Export the instance (optional, if needed elsewhere)
+export { api };
