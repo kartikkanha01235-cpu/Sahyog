@@ -158,15 +158,6 @@ const styles = {
   }
 };
 
-// Add hover effect
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-  button:hover {
-    background-color: #f8fafc !important;
-    border-color: #cbd5e1 !important;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
-  }
-`;
-document.head.appendChild(styleSheet);
+
 
 export default Login;
