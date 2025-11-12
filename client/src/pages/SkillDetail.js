@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const SkillDetail = () => {
-  const { id } = useParams();
+  const {  } = useParams();
   const navigate = useNavigate();
 
   // This is a placeholder - you can expand this later

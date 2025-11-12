@@ -5,7 +5,7 @@ import { requestAPI } from '../services/api';
 import { Plus, Clock, CheckCircle, XCircle, MessageSquare } from 'lucide-react';
 
 const MyRequests = () => {
-  const { user } = useAuth();
+  const {  } = useAuth();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');

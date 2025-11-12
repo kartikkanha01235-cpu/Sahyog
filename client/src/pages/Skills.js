@@ -17,7 +17,7 @@ const Skills = () => {
   useEffect(() => {
     fetchCategories();
     fetchSkills();
-  }, []);
+  }, [fetchSkills]);
 
   const fetchCategories = async () => {
     try {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { requestAPI } from '../services/api';
-import { MapPin, Clock, AlertCircle, User, MessageSquare, CheckCircle, Star } from 'lucide-react';
+import { MapPin, Clock, MessageSquare, CheckCircle, Star } from 'lucide-react';
 
 const RequestDetail = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const RequestDetail = () => {
 
   useEffect(() => {
     fetchRequest();
-  }, [id]);
+  }, [fetchRequest]);
 
   const fetchRequest = async () => {
     try {

@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LogIn, Users, Shield, Zap } from 'lucide-react';
 
-const Login = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 

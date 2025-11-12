@@ -17,7 +17,7 @@ const Profile = () => {
 
   useEffect(() => {
     fetchUserData();
-  }, [id]);
+  }, [fetchUserData]);
 
   const fetchUserData = async () => {
     try {

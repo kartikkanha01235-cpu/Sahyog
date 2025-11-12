@@ -18,7 +18,7 @@ const Requests = () => {
   useEffect(() => {
     fetchCategories();
     fetchRequests();
-  }, []);
+  }, [fetchrequests]);
 
   const fetchCategories = async () => {
     try {
