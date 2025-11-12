@@ -24,6 +24,16 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// After all middleware and before route handlers
+app.get('/api/health', (req, res) => {
+  console.log('Health check endpoint accessed');
+  res.status(200).json({ 
+    status: 'OK', 
+    message: 'Sahyog API is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Session configuration
 app.use(session({
   secret: process.env.SESSION_SECRET || 'sahyog-secret-key',
@@ -47,16 +57,12 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sahyog', 
 .then(() => console.log('✅ MongoDB connected successfully'))
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
+
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/requests', requestRoutes);
-
-// Health check route
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Sahyog API is running' });
-});
 
 // Error handling middleware
 app.use((err, req, res, next) => {

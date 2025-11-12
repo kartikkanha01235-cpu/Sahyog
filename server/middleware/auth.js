@@ -1,3 +1,4 @@
+
 const jwt = require('jsonwebtoken');
 
 // Middleware to check if user is authenticated
