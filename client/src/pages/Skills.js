@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { skillAPI } from '../services/api';
 import { Search, MapPin, Star, Filter } from 'lucide-react';
@@ -10,29 +10,17 @@ const Skills = () => {
   const [filters, setFilters] = useState({
     query: '',
     category: '',
-    location: '',
-    minRating: ''
+    location: '',   minRating: ''
   });
 
-  useEffect(() => {
-    fetchCategories();
-    fetchSkills();
-  }, [fetchSkills]);
-
   const fetchCategories = useCallback(async () => {
-  try {
-    const response = await skillAPI.getCategories();
-    setCategories(response.data);
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-  }
-}, []);
-
-// Update the dependency array in the main useEffect
-useEffect(() => {
-  fetchCategories();
-  fetchSkills();
-}, [fetchCategories, fetchSkills]);
+    try {
+      const response = await skillAPI.getCategories();
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  }, []);
 
   const fetchSkills = useCallback(async () => {
     try {
@@ -44,12 +32,12 @@ useEffect(() => {
     } finally {
       setLoading(false);
     }
-  }, [filters]); // Add dependencies here
+  }, [filters]);
 
   useEffect(() => {
     fetchCategories();
     fetchSkills();
-  }, [fetchSkills, fetchCategories]); // Add fetchCategories to the dependency array
+  }, [fetchCategories, fetchSkills]);
 
   const handleFilterChange = (e) => {
     setFilters({

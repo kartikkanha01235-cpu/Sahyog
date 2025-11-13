@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { requestAPI, skillAPI } from '../services/api';
 import { Search, Filter, AlertCircle, Clock, CheckCircle, MapPin } from 'lucide-react';
@@ -15,23 +15,7 @@ const Requests = () => {
     location: ''
   });
 
-  useEffect(() => {
-    fetchCategories();
-    fetchRequests();
-  }, [fetchRequests]);
-
-  const fetchCategories = async () => {
-    try {
-      const response = await skillAPI.getCategories();
-      if (response.data.success) {
-        setCategories(response.data.categories);
-      }
-    } catch (err) {
-      console.error('Error fetching categories:', err);
-    }
-  };
-
-  const fetchRequests = async () => {
+  const fetchRequests = useCallback(async () => {
     try {
       setLoading(true);
       const params = {};
@@ -50,7 +34,23 @@ const Requests = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
+
+  const fetchCategories = useCallback(async () => {
+    try {
+      const response = await skillAPI.getCategories();
+      if (response.data.success) {
+        setCategories(response.data.categories);
+      }
+    } catch (err) {
+      console.error('Error fetching categories:', err);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCategories();
+    fetchRequests();
+  }, [fetchRequests, fetchCategories]);
 
   const handleFilterChange = (e) => {
     setFilters({
